@@ -1,0 +1,10 @@
+.wrapper {
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 15px;
+  justify-content: center;
+}
