@@ -1,7 +1,13 @@
 import ImageCard from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css";
+import { Image } from "../App/App";
 
-export default function ImageGallery({ images, isOpen }) {
+interface Props {
+  images: Image[];
+  isOpen: (image: Image) => void;
+}
+
+export default function ImageGallery({ images, isOpen }: Props) {
   return (
     <div className={css.wrapper}>
       <ul className={css.list}>

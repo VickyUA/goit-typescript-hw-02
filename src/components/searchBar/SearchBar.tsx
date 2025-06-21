@@ -1,18 +1,27 @@
+import React from "react";
 import css from "./SearchBar.module.css";
 import { IoSearch } from "react-icons/io5";
 import toast from "react-hot-toast";
 
-export default function SearchBar({ onSearch }) {
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    const form = evt.target;
-    const { searchQuery } = form.elements;
+interface Props {
+  onSearch: (query: string) => void;
+}
 
-    if (searchQuery.value.trim() === "") {
+export default function SearchBar({ onSearch }: Props) {
+  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    const form = evt.currentTarget;
+    const formElements = form.elements as typeof form.elements & {
+      searchQuery: HTMLInputElement;
+    };
+
+    const value = formElements.searchQuery.value.trim();
+
+    if (value === "") {
       toast.error("Please enter search value");
       return;
     }
-    onSearch(searchQuery.value);
+    onSearch(value);
     form.reset();
   };
 
